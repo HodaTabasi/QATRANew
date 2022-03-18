@@ -285,7 +285,8 @@ class FireAuthHelper {
         print('The provided cc d.');
 
         // Create a PhoneAuthCredential with the code
-        PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId!, smsCode: smsCode);
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
+
 
         // Sign the user in (or link) with the credential
         await fba.signInWithCredential(credential);
@@ -353,16 +354,28 @@ class FireAuthHelper {
     });
   }
 
-  Future<bool> getFromRealTime(phone) {
+  Future<bool> getFromRealTime(phone) async {
+    var future = false;
     print("dddddddddddd $phone");
-    Future<bool> future =
-    fbrt.reference().child("userData").child(phone).once().then((value) {
-
-      return value == null ? false : true;
-    }).catchError((error) => false);
+    final snapshot =
+    await fbrt.ref("userData").child(phone).get();
+    if (snapshot.exists) {
+      print(snapshot.value);
+      future = true;
+    } else {
+      print('No data available.');
+      future = false;
+    }
     //     .then((DataSnapshot snapshot) {
     //   print("Data: ${snapshot.value}");
     // });
+/*
+.then((value) {
+      print("dddddddddddd $value");
+      return value == null ? false : true;
+    }).catchError((error) => false);*/
+
+    // final snapshot = await ref.child('users/$userId').get();
 
     return future;
   }

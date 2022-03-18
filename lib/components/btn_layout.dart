@@ -8,8 +8,9 @@ import '../utils/NavigationKey.dart';
 import 'CustomDialogBox.dart';
 
 class BtnLayout extends StatelessWidget {
-  String title;
-  Function prsee;
+  late String title;
+  late VoidCallback prsee;
+  // late Function prsee;
 
   BtnLayout(this.title,this.prsee);
 
@@ -28,7 +29,7 @@ class BtnLayout extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all(Color(0xff28449C)),
                 padding: MaterialStateProperty.all(EdgeInsets.all(10.r)),
                 textStyle: MaterialStateProperty.all(TextStyle(fontSize: 16.sp,color: Colors.white))),
-            onPressed: ()=>prsee,
+            onPressed: prsee,
             child: Text("$title",style: TextStyle(fontSize: 16.sp,color: Colors.white,fontWeight: FontWeight.w700),),
 
           ),

@@ -6,62 +6,62 @@ class SharedPrefrencesHelper {
 
   static SharedPrefrencesHelper sharedPrefrencesHelper =
       SharedPrefrencesHelper._();
-  late SharedPreferences sharedPrefrences ;
+  SharedPreferences? sharedPrefrences ;
 
   initSharedPrefrences() async {
     sharedPrefrences = await SharedPreferences.getInstance();
   }
 
   setToken(String token) async {
-    await sharedPrefrences.setString('token', token);
+    await sharedPrefrences!.setString('token', token);
   }
 
   String? getToken() {
-    return sharedPrefrences.getString('token');
+    return sharedPrefrences!.getString('token');
   }
 
   setType(String type) async {
-    await sharedPrefrences.setString('type', type);
+    await sharedPrefrences!.setString('type', type);
   }
 
   String? getType() {
-    return sharedPrefrences.getString('type');
+    return sharedPrefrences!.getString('type');
   }
 
   setPassword(String password) async {
-    await sharedPrefrences.setString('password', password);
+    await sharedPrefrences!.setString('password', password);
   }
 
   String? getPassword() {
-    return sharedPrefrences.getString('password');
+    return sharedPrefrences!.getString('password');
   }
 
   setCodeCountry(String password) async {
-    await sharedPrefrences.setString('codeCountry', password);
+    await sharedPrefrences!.setString('codeCountry', password);
   }
 
   String? getCodeCountry() {
-    return sharedPrefrences.getString('codeCountry');
+    return sharedPrefrences!.getString('codeCountry');
   }
 
   setIsLogin(bool isLogin) async {
-    await sharedPrefrences.setBool('isLogin', isLogin);
+    await sharedPrefrences!.setBool('isLogin', isLogin);
   }
 
   bool? getLogin() {
-    return sharedPrefrences.getBool('isLogin');
+    return sharedPrefrences!.getBool('isLogin');
   }
 
   setData(key,value)async{
-    await sharedPrefrences.setString(key, value);
+    await sharedPrefrences!.setString(key, value);
   }
 
   String? getData(key){
-    return sharedPrefrences.getString(key);
+    return sharedPrefrences!.getString(key);
   }
 
   clear(){
-    return sharedPrefrences.clear();
+    return sharedPrefrences!.clear();
   }
 
   saveLoginData({required bool isLogin,required String token,required String password ,required String fname,required String lname}){

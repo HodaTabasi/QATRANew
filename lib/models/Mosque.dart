@@ -1,13 +1,13 @@
 
 class Mosque {
-  late int id;
-  late String name;
+  late int? id;
+  late String? name;
   late var lat;
   late var lng;
-  late String type;
-  late String isHidden;
-  late String createdAt;
-  late String updatedAt;
+  late String? type;
+  late String? isHidden;
+  late String? createdAt;
+  late String? updatedAt;
   late var address;
   late var rating;
   late var userRatingsTotal;

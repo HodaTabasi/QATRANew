@@ -32,8 +32,8 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
 
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        bool isLoadong =
-            SharedPrefrencesHelper.sharedPrefrencesHelper.getLogin()!;
+        bool? isLoadong =
+            SharedPrefrencesHelper.sharedPrefrencesHelper.getLogin();
         isLoadong != null
             ? isLoadong
                 ? Get.offAll(() => GMap(),

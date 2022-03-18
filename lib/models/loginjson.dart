@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:qatra_app/models/User.dart';
 
 class Loginjson {
@@ -5,11 +6,7 @@ class Loginjson {
   late Data data;
   late List<String> message;
 
-  Loginjson({
-    required this.status,
-    required this.data,
-    required this.message});
-
+  Loginjson({required this.status, required this.data, required this.message});
 
   Loginjson.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -39,13 +36,29 @@ class Data {
   late Token token;
   late User user;
 
-  Data({
-    required this.token,
-    required this.user});
+  Data({required this.token, required this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
-    token = (json['token'] != null ? new Token.fromJson(json['token']): null)!;
-    user = (json['user'] != null ? new User.fromJson(json['user']) : null)!;
+    token = json['token'] != null
+        ? new Token.fromJson(json['token'])
+        : new Token(accessToken: '', tokenType: '', expiresIn: 0);
+    user = json['user'] != null
+        ? new User.fromJson(json['user'])
+        : new User(
+            id: 0,
+            firstName: 'firstName',
+            lastName: 'lastName',
+            email: 'email',
+            emailVerifiedAt: 'emailVerifiedAt',
+            phone: '',
+            isPhoneVerified: 'isPhoneVerified',
+            createdAt: '',
+            updatedAt: '',
+            gender: '',
+            country: '',
+            address: '',
+            smsTokenValidation: '',
+            isBan: false);
   }
 
   Map<String, dynamic> toJson() {
@@ -65,10 +78,10 @@ class Token {
   late String tokenType;
   late int expiresIn;
 
-  Token({
-    required this.accessToken,
-    required this.tokenType,
-    required this.expiresIn});
+  Token(
+      {required this.accessToken,
+      required this.tokenType,
+      required this.expiresIn});
 
   Token.fromJson(Map<String, dynamic> json) {
     accessToken = json['access_token'];
@@ -84,4 +97,3 @@ class Token {
     return data;
   }
 }
-

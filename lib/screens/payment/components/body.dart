@@ -41,7 +41,7 @@ class _BodyState extends State<Body> {
 
     order.productId = data.product.id;
     order.mosqueId = data.mosque.id;
-    order.mosqueName = data.mosque.name;
+    order.mosqueName = data.mosque.name!;
 
     order.receiverName =
         Provider.of<OrderProvider>(context, listen: false).nameController.text;
