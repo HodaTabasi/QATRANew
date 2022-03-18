@@ -348,7 +348,7 @@ class FireAuthHelper {
   }
 
   addToRealTime(phone, email) {
-    fbrt.reference().child("userData").child(phone).set({
+    fbrt.ref("userData").child(phone).set({
       'phone': phone,
       'email': email,
     });
@@ -407,8 +407,8 @@ class FireAuthHelper {
       SharedPrefrencesHelper.sharedPrefrencesHelper.saveLoginData(
           isLogin: true,
           token: loginjson.data.token.accessToken,
-          lname: loginjson.data.user.lastName,
-          fname: loginjson.data.user.firstName,
+          lname: loginjson.data.user.lastName??"",
+          fname: loginjson.data.user.firstName??"",
           password: Provider.of<NewUserProvider>(context, listen: false)
               .passwordController
               .text);
@@ -477,6 +477,7 @@ class FireAuthHelper {
   }
 
   Future<void> verifyPhoneNumber(String _userPhone,context) async {
+    print("gggggggggggg ${_userPhone}");
     /// NOTE: Either append your phone number country code or add in the code itself
     /// Since I'm in India we use "+91 " as prefix `phoneNumber`
     // String userPhoneNumber = "+91 " + _phoneNumberController.text.toString().trim();
@@ -517,7 +518,7 @@ class FireAuthHelper {
 
     /// if Phone Didn't Handled OTP Received Message Automaticly
     // void codeSent(String verificationId, [int code]) {
-    void codeSent(String _verificationId, int _resendToken ) async {
+    void codeSent(String _verificationId, int? _resendToken ) async {
       print( 'codeSent' );
       print( _verificationId );
       print( 'resendToken' );
@@ -540,23 +541,23 @@ class FireAuthHelper {
       addToastMessage(error: "TimeOut",type: false);
     }
 
-    // await FirebaseAuth.instance.verifyPhoneNumber(
-    //   /// Make sure to prefix with your country code
-    //   phoneNumber: _userPhone ,
-    //   /// `seconds` didn't work. The underlying implementation code only reads in `millisenconds`
-    //   // timeout: Duration(milliseconds: 10000),
-    //   timeout: const Duration(seconds: 120),
-    //   /// If the SIM (with phoneNumber) is in the current device this function is called.
-    //   /// This function gives `AuthCredential`. Moreover `login` function can be called from this callback
-    //   // verificationCompleted: verificationCompleted ,
-    //   /// Called when the verification is failed
-    //   verificationFailed: verificationFailed ,
-    //   /// This is called after the OTP is sent. Gives a `verificationId` and `code`
-    //   codeSent: codeSent ,
-    //   /// After automatic code retrival `tmeout` this function is called
-    //   codeAutoRetrievalTimeout: codeAutoRetrievalTimeout, verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {  },
-    // ); // All the callbacks are above
-    //
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      /// Make sure to prefix with your country code
+      phoneNumber: _userPhone ,
+      /// `seconds` didn't work. The underlying implementation code only reads in `millisenconds`
+      // timeout: Duration(milliseconds: 10000),
+      timeout: const Duration(seconds: 120),
+      /// If the SIM (with phoneNumber) is in the current device this function is called.
+      /// This function gives `AuthCredential`. Moreover `login` function can be called from this callback
+      // verificationCompleted: verificationCompleted ,
+      /// Called when the verification is failed
+      verificationFailed: verificationFailed ,
+      /// This is called after the OTP is sent. Gives a `verificationId` and `code`
+      codeSent: codeSent ,
+      /// After automatic code retrival `tmeout` this function is called
+      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout, verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {  },
+    ); // All the callbacks are above
+
 
   }
 

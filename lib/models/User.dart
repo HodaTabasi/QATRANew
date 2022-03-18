@@ -16,19 +16,19 @@
 class User {
   User({
     required int id,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String emailVerifiedAt,
-    required String phone,
-    required String isPhoneVerified,
-    required String createdAt,
-    required String updatedAt,
-    required String gender,
-    required String country,
-    required String address,
-    required String smsTokenValidation,
-    required bool isBan,}){
+    required var firstName,
+    required var lastName,
+    required var email,
+    required var emailVerifiedAt,
+    required var phone,
+    required var isPhoneVerified,
+    required var createdAt,
+    required var updatedAt,
+    required var gender,
+    required var country,
+    required var address,
+    required var smsTokenValidation,
+    required var isBan,}){
     _id = id;
     _firstName = firstName;
     _lastName = lastName;

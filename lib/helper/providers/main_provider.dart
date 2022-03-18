@@ -20,7 +20,7 @@ class MainProvider extends ChangeNotifier {
   int mosqueType = 0;
   int floatValue = 2;
 
- late BestTutorSite site;
+ late BestTutorSite site = BestTutorSite.email;
   bool isReset = false;
   late String smsCode ;
 

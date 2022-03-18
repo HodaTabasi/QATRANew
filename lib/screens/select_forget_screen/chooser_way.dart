@@ -47,6 +47,7 @@ class _ChosserWayResetState extends State<ChosserWayReset> {
 
     SharedPrefrencesHelper.sharedPrefrencesHelper.setData("phone",countryCode+phone);
 
+    Provider.of<MainProvider>(context, listen: false).site = BestTutorSite.mobile;
     Provider.of<MainProvider>(context,
         listen: false).isReset = true;
 
@@ -59,12 +60,15 @@ class _ChosserWayResetState extends State<ChosserWayReset> {
   }
 
   emailVerification() async {
+
     // progress.show();
       Provider.of<NewUserProvider>(context, listen: false).changeLoading(true);
 
     String email = Provider.of<NewUserProvider>(context, listen: false)
         .emailController
         .text;
+
+      Provider.of<MainProvider>(context, listen: false).site = BestTutorSite.email;
 
     ForgetPassResponse? response =
         await HttpService.apiHelper.forgetPassword(email);
@@ -79,7 +83,6 @@ class _ChosserWayResetState extends State<ChosserWayReset> {
           backgroundColor: Colors.white,
           textColor: Colors.black,
           fontSize: 16.0);
-
         Provider.of<NewUserProvider>(context, listen: false)
             .changeLoading(false);
     } else {
